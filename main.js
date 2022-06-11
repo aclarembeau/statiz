@@ -11,8 +11,6 @@ async function main() {
     await require("./src/commands/serve")();
   } else if (command === "new") {
     await require("./src/commands/new")(directory);
-  } else if (command === "upgrade") {
-    require("./src/commands/upgrade")();
   } else if (command === "version") {
     require("./src/commands/version")();
   } else {

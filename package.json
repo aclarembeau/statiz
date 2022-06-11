@@ -1,13 +1,16 @@
 {
   "name": "statiz",
-  "version": "0.0.4",
-  "description": "",
+  "version": "0.0.5",
+  "bin": {
+    "statiz": "index.js"
+  },
+  "description": "The easy-to-use static website generator",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "aclarembeau",
   "license": "ISC",
   "dependencies": {
     "argparse": "^2.0.1",
@@ -24,5 +27,13 @@
   },
   "devDependencies": {
     "prettier": "2.6.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aclarembeau/statiz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aclarembeau/statiz/issues"
+  },
+  "homepage": "https://github.com/aclarembeau/statiz#readme"
 }
