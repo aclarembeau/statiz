@@ -20,8 +20,7 @@ git clone git@github.com:aclarembeau/statiz.git /usr/local/bin/statiz-dir;
 sudo touch "/usr/local/bin/statiz";
 sudo chmod 777 -R /usr/local/bin/statiz;
 echo "#\!/bin/sh\nnode /usr/local/bin/statiz-dir/main.js \"\$@\"" > "/usr/local/bin/statiz";
-cd /usr/local/bin/statiz-dir;
-npm i  
+npm --prefix /usr/local/bin/statiz-dir i;  
 ```
 
 ## How to use

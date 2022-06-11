@@ -71,8 +71,6 @@ async function main(){
     parser.add_argument('action', {help: 'build/serve' });
     parser.add_argument('source', {help: 'source directory' });
 
-    process.chdir(process.cwd());
-
     const {action, source} = parser.parse_args();
 
     if(!fsSync.existsSync(source)){
