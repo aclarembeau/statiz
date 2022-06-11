@@ -2,7 +2,7 @@
 
 const { parseArguments } = require("./src/argparse");
 
-async function main() {
+async function index() {
   const { command, directory } = await parseArguments();
 
   if (command === "build") {
@@ -18,4 +18,4 @@ async function main() {
   }
 }
 
-main();
+index();
