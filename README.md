@@ -1,54 +1,45 @@
-# Statiz
+# Statiz - The simple static website generator
 
-A simple, modular, next generation static website builder.
+Statiz is the most simple and easy to use static website generator. Without any configuration, automatically transform
+your directory into a fully functional website.
 
-## Overview
+## Supports
 
-Statiz is a simple, module static website builder that focuses on getting the job done. Compared to other website
-builders, Statiz aims to provide a simple experience for website build, serve and deploy, without any config or
-framework to learn.
+Any operating system:
 
-## How to install
+- Windows
+- Mac OS
+- Linux
 
-Run the following command
+Web technologies:
 
-```
-sudo rm -rf /usr/local/bin/statiz;
-sudo rm -rf /usr/local/bin/statiz-src;
-sudo mkdir -p /usr/local/bin/statiz-src; 
-sudo chmod 777 -R /usr/local/bin/statiz-src;
-git clone git@github.com:aclarembeau/statiz.git /usr/local/bin/statiz-src; 
-git config --global --add safe.directory /usr/local/bin/statiz-src;
-sudo touch "/usr/local/bin/statiz";
-sudo chmod 777 -R /usr/local/bin/statiz;
-echo "#\!/bin/sh\nnode /usr/local/bin/statiz-src/index.js \"\$@\"" > "/usr/local/bin/statiz";
-npm --prefix /usr/local/bin/statiz-src i;  
-```
+- EJS templating
+- SCSS compilation
+- JS and CSS minifying
+- Sitemap generation
 
-## How to use
-
-To create a new website and see it on your browser
+## Installing statiz
 
 ```
-statiz new yourdirectory 
-cd yourdirectory 
+npm install -g statiz
+```
+
+## Starting a new project
+
+```
+statiz new yoursite
+```
+
+## Serving your website
+
+```
+cd yoursite
 statiz serve
 ```
 
-Then, build it on production with
+## Building for production
 
 ```
+cd yoursite
 statiz build
 ```
-
-## Roadmap
-
-- [ ] Plugins system
-- [ ] Default plugin: EJS
-- [ ] Default plugin: SASS
-- [ ] Default plugin: IMAGES
-- [ ] Explain how to create plugin
-
-## Plugins
-
-WIP 
