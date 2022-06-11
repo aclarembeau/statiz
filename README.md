@@ -1,11 +1,12 @@
-# Statiz 
-A simple, modular, next generation static website builder. 
+# Statiz
 
-## Overview 
+A simple, modular, next generation static website builder.
 
-Statiz is a simple, module static website builder that focuses on getting the job done. 
-Compared to other website builders, Statiz aims to provide a simple experience for website build, serve and deploy, without 
-any config or framework to learn. 
+## Overview
+
+Statiz is a simple, module static website builder that focuses on getting the job done. Compared to other website
+builders, Statiz aims to provide a simple experience for website build, serve and deploy, without any config or
+framework to learn.
 
 ## How to install
 
@@ -33,16 +34,16 @@ statiz deploy                   : Deploy your website online
 statiz add-plugin PLUGIN        : Install a specific plugin
 statiz remove-plugin PLUGIN     : Uninstall a specific plugin
 statiz list-plugins             : List all installed plugins
-statiz upgrade                  : Upgrade statiz source 
+statiz actionUpgrade                  : Upgrade statiz directory 
 ```
 
-## Roadmap 
+## Roadmap
 
-- [ ] Plugins system 
-- [ ] Default plugin: EJS 
+- [ ] Plugins system
+- [ ] Default plugin: EJS
 - [ ] Default plugin: SASS
-- [ ] Default plugin: IMAGES 
-- [ ] Explain how to create plugin 
+- [ ] Default plugin: IMAGES
+- [ ] Explain how to create plugin
 
 ## Plugins
 
