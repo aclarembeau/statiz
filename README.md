@@ -17,6 +17,7 @@ sudo rm -rf /usr/local/bin/statiz-src;
 sudo mkdir -p /usr/local/bin/statiz-src; 
 sudo chmod 777 -R /usr/local/bin/statiz-src;
 git clone git@github.com:aclarembeau/statiz.git /usr/local/bin/statiz-src; 
+git config --global --add safe.directory /usr/local/bin/statiz-src;
 sudo touch "/usr/local/bin/statiz";
 sudo chmod 777 -R /usr/local/bin/statiz;
 echo "#\!/bin/sh\nnode /usr/local/bin/statiz-src/main.js \"\$@\"" > "/usr/local/bin/statiz";
