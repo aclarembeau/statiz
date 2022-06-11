@@ -5,6 +5,9 @@ const buildFile = async (srcDir, srcFile, distDir, plugins) => {
   console.log("Building", srcFile);
 
   let content = (await fs.readFile(srcFile)).toString();
+
+  console.log(content);
+
   srcFile = path.join(distDir, path.relative(srcDir, srcFile));
 
   for (let plugin of plugins) {

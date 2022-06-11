@@ -7,8 +7,6 @@ function sassASync(data) {
         data: data,
       },
       (err, result) => {
-        console.error(err);
-
         if (err) reject(err);
         if (result) resolve(result.css.toString());
       }
