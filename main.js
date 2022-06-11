@@ -9,7 +9,7 @@ const sass = require("node-sass");
 const http = require("http");
 const nStatic = require("node-static");
 const { differenceInMilliseconds } = require("date-fns");
-let { exec } = require("child_process");
+let { execSync } = require("child_process");
 
 function sassASync(srcFile) {
   return new Promise((resolve, reject) => {
@@ -155,10 +155,10 @@ async function main() {
     }
   } else if (action === "upgrade") {
     console.log("Upgrading statiz code...");
-    exec("git pull -v", { cwd: __dirname }).stdout.pipe(process.stdout);
+    execSync("git pull -v", { cwd: __dirname });
 
     console.log("Installing dependencies...");
-    exec("npm i", { cwd: __dirname }).stdout.pipe(process.stdout);
+    execSync("npm i", { cwd: __dirname });
   } else if (action === "version") {
     console.log(require("./package.json").version);
   } else {
