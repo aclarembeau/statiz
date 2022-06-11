@@ -7,10 +7,10 @@ socket.onerror = (error) => console.log('reload socket error: ', error)
 socket.onmessage = () => window.location.reload(true);
 </script>`;
 
-module.exports = (baseAction, command, args) => {
-  if (command == "build") {
+module.exports = (command, step, args) => {
+  if (step === "build") {
     let { srcFile, content } = args;
-    if (srcFile.endsWith(".html") && baseAction == "serve") {
+    if (srcFile.endsWith(".html") && command === "serve") {
       content = content
         .toString()
         .replace(HTML_CLOSING_TAG, HOT_RELOAD_SCRIPT + HTML_CLOSING_TAG);

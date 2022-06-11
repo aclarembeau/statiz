@@ -1,22 +1,22 @@
 #!/usr/bin/env node
 
-const { parseArguments } = require("./src/arg-parser");
+const { parseArguments } = require("./src/argparse");
 
 async function main() {
-  const { action, directory } = await parseArguments();
+  const { command, directory } = await parseArguments();
 
-  if (action === "build") {
-    await require("./src/actions/build")();
-  } else if (action === "serve") {
-    await require("./src/actions/serve")();
-  } else if (action === "new") {
-    await require("./src/actions/new")(directory);
-  } else if (action === "upgrade") {
-    require("./src/actions/upgrade")();
-  } else if (action === "version") {
-    require("./src/actions/version")();
+  if (command === "build") {
+    await require("./src/commands/build")();
+  } else if (command === "serve") {
+    await require("./src/commands/serve")();
+  } else if (command === "new") {
+    await require("./src/commands/new")(directory);
+  } else if (command === "upgrade") {
+    require("./src/commands/upgrade")();
+  } else if (command === "version") {
+    require("./src/commands/version")();
   } else {
-    console.error("Unknown action: ", action);
+    console.error("Unknown command: ", command);
   }
 }
 

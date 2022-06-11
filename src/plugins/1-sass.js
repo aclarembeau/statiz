@@ -1,6 +1,6 @@
 const sass = require("node-sass");
 
-function sassASync(data) {
+function compileSASS(data) {
   return new Promise((resolve, reject) => {
     sass.render(
       {
@@ -14,11 +14,11 @@ function sassASync(data) {
   });
 }
 
-module.exports = async (baseAction, command, args) => {
-  if (command == "build") {
+module.exports = async (command, step, args) => {
+  if (step === "build") {
     let { srcFile, content } = args;
     if (srcFile.endsWith(".scss")) {
-      content = await sassASync(content);
+      content = await compileSASS(content);
       srcFile = srcFile.replace(".scss", ".css");
     }
 

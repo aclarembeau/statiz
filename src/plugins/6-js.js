@@ -1,11 +1,10 @@
-module.exports = (baseAction, command, args) => {
-  if (command == "build") {
+const uglify = require("uglify-js");
+module.exports = (command, step, args) => {
+  if (step === "build") {
     let { srcFile, content } = args;
     if (srcFile.endsWith(".js")) {
-      const uglify = require("uglify-js");
-      const result = uglify.minify(content).code;
+      content = uglify.minify(content).code;
 
-      content = result;
       return { srcFile, content };
     }
   }

@@ -1,13 +1,13 @@
 const glob = require("glob");
-const path = require("path");
+require("path");
 const { differenceInMilliseconds } = require("date-fns");
 
 const { handleFile } = require("../engine");
 const { loadPlugins } = require("../plugin-loader");
 const fs = require("fs/promises");
-const fsSync = require("fs");
+require("fs");
 
-async function actionBuild() {
+module.exports = async function () {
   const dist = "./dist";
   await fs.mkdir(dist, { recursive: true });
 
@@ -20,8 +20,7 @@ async function actionBuild() {
   let promises = [];
 
   for (const file of files) {
-    if (!file.includes(dist))
-      promises.push(handleFile("build", "./", file, dist, plugins));
+    promises.push(handleFile("build", "./", file, dist, plugins));
   }
 
   await Promise.all(promises);
@@ -32,6 +31,4 @@ async function actionBuild() {
 
   console.log("");
   console.log("Elapsed time: ", differenceInMilliseconds(new Date(), t0), "ms");
-}
-
-module.exports = actionBuild;
+};

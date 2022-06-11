@@ -4,7 +4,7 @@ const { differenceInMilliseconds } = require("date-fns");
 const nStatic = require("node-static");
 const http = require("http");
 const fsSync = require("fs");
-const { execSync } = require("child_process");
+
 const { handleFile } = require("../engine");
 const { sleep } = require("../utils");
 let { WebSocketServer } = require("ws");
@@ -38,7 +38,7 @@ function watchChanges(source, changedFiles) {
   });
 }
 
-async function actionServe() {
+module.exports = async function () {
   const dist = path.join("./", "dist");
   await fs.mkdir(dist, { recursive: true });
   const fileServer = new nStatic.Server(dist, { cache: 0 });
@@ -67,12 +67,7 @@ async function actionServe() {
       let promises = [];
 
       for (let file of changedFiles) {
-        if (
-          fsSync.existsSync(file) &&
-          fsSync.lstatSync(file).isFile() &&
-          !file.includes(dist)
-        )
-          promises.push(handleFile("serve", "./", file, dist, plugins));
+        promises.push(handleFile("serve", "./", file, dist, plugins));
       }
 
       for (let plugin of plugins) {
@@ -99,6 +94,4 @@ async function actionServe() {
 
     await sleep(200);
   }
-}
-
-module.exports = actionServe;
+};

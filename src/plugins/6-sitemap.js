@@ -2,11 +2,11 @@ const glob = require("glob");
 const path = require("path");
 let fs = require("fs/promises");
 let fsSync = require("fs");
-module.exports = async (baseAction, command, args) => {
-  if (command == "postprocessing") {
+module.exports = async (command, step, args) => {
+  if (step === "postprocessing") {
     let { src, dist } = args;
 
-    if (!fsSync.exists(path.join(src, "config.json"))) {
+    if (!fsSync.existsSync(path.join(src, "config.json"))) {
       console.error("Your sources should have a root config.json repository");
       return;
     }
