@@ -69,7 +69,7 @@ async function main(){
     });
 
     parser.add_argument('action', {help: 'build/serve' });
-    parser.add_argument('source', {help: 'source directory' });
+    parser.add_argument('source', {help: 'source directory', required: false });
 
     const {action, source} = parser.parse_args();
 
@@ -149,9 +149,12 @@ async function main(){
             await sleep(200)
         }
     }
-    else if(action == 'upgrade'){
+    else if(action === 'upgrade'){
+        console.log('Upgrading statiz code...')
         let {exec} = require('child_process')
-        exec('git pull')
+
+        console.log('Installing dependencies...')
+        exec('git pull; npm i')
     }
     else{
         console.error('Unknown action: ', action)
