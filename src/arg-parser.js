@@ -8,11 +8,20 @@ async function parseArguments() {
     description: "Your simple static website generator",
   });
 
-  parser.add_argument("action", { help: "build/serve" });
+  var subparsers = parser.add_subparsers({
+    title: "action",
+    dest: "action",
+  });
 
-  const { action } = parser.parse_args();
+  subparsers.add_parser("new", { add_help: true }).add_argument("directory");
+  subparsers.add_parser("build", { add_help: true });
+  subparsers.add_parser("serve", { add_help: true });
+  subparsers.add_parser("upgrade", { add_help: true });
+  subparsers.add_parser("version", { add_help: true });
 
-  return { action };
+  const { action, directory } = parser.parse_args();
+
+  return { action, directory };
 }
 
 module.exports = { parseArguments };
