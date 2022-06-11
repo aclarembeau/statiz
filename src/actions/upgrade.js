@@ -2,7 +2,7 @@ import { execSync } from "child_process";
 
 function actionUpgrade() {
   console.log("=== Upgrading statiz code...");
-  execSync("git pull -v", { cwd: __dirname });
+  execSync("git stash; git pull -v", { cwd: __dirname });
 
   console.log("\n\n");
   console.log("=== Installing dependencies...");
