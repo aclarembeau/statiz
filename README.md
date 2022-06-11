@@ -26,9 +26,9 @@ npm --prefix /usr/local/bin/statiz-src i;
 ## How to use
 
 ```
-statiz build ./source           : Build your website for production
-statiz serve ./source           : Serve and build your website for development
-statiz deploy ./source          : Deploy your website online
+statiz build                    : Build your website for production
+statiz serve                    : Serve and build your website for development
+statiz deploy                   : Deploy your website online
 statiz add-plugin PLUGIN        : Install a specific plugin
 statiz remove-plugin PLUGIN     : Uninstall a specific plugin
 statiz list-plugins             : List all installed plugins

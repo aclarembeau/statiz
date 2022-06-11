@@ -156,6 +156,9 @@ async function main(){
         console.log('Installing dependencies...')
         exec('git pull; npm i', {cwd: __dirname})
     }
+    else if(action == 'version'){
+        console.log(require("./package.json").version)
+    }
     else{
         console.error('Unknown action: ', action)
     }
