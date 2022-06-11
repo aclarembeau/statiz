@@ -11,7 +11,7 @@ async function main() {
     await require("./src/actions/serve")(directory);
   } else if (action === "new") {
     await require("./src/actions/new")(directory);
-  } else if (action === "actionUpgrade") {
+  } else if (action === "upgrade") {
     require("./src/actions/upgrade")();
   } else if (action === "version") {
     require("./src/actions/version")();
