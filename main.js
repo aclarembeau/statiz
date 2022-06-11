@@ -155,10 +155,10 @@ async function main() {
     }
   } else if (action === "upgrade") {
     console.log("Upgrading statiz code...");
-    console.log(exec("git pull", { cwd: __dirname }));
+    exec("git pull", { cwd: __dirname }).stdout.pipe(process.stdout);
 
     console.log("Installing dependencies...");
-    console.log(exec("npm i", { cwd: __dirname }));
+    exec("npm i", { cwd: __dirname }).stdout.pipe(process.stdout);
   } else if (action === "version") {
     console.log(require("./package.json").version);
   } else {
