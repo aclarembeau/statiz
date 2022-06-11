@@ -27,14 +27,18 @@ npm --prefix /usr/local/bin/statiz-src i;
 
 ## How to use
 
+To create a new website and see it on your browser
+
 ```
-statiz build                    : Build your website for production
-statiz serve                    : Serve and build your website for development
-statiz deploy                   : Deploy your website online
-statiz add-plugin PLUGIN        : Install a specific plugin
-statiz remove-plugin PLUGIN     : Uninstall a specific plugin
-statiz list-plugins             : List all installed plugins
-statiz actionUpgrade                  : Upgrade statiz directory 
+statiz new yourdirectory 
+cd yourdirectory 
+statiz serve
+```
+
+Then, build it on production with
+
+```
+statiz build
 ```
 
 ## Roadmap

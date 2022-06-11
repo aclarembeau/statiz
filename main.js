@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const { parseArguments } = require("./src/args");
+const { parseArguments } = require("./src/arg-parser");
 
 async function main() {
-  const { action, directory } = await parseArguments();
+  const { action } = await parseArguments();
 
   if (action === "build") {
-    await require("./src/actions/build")(directory);
+    await require("./src/actions/build")();
   } else if (action === "serve") {
-    await require("./src/actions/serve")(directory);
+    await require("./src/actions/serve")();
   } else if (action === "new") {
-    await require("./src/actions/new")(directory);
+    await require("./src/actions/new")();
   } else if (action === "upgrade") {
     require("./src/actions/upgrade")();
   } else if (action === "version") {

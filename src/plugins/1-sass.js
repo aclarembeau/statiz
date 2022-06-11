@@ -14,8 +14,8 @@ function sassASync(data) {
   });
 }
 
-module.exports = async (action, args) => {
-  if (action == "build") {
+module.exports = async (baseAction, command, args) => {
+  if (command == "build") {
     let { srcFile, content } = args;
     if (srcFile.endsWith(".scss")) {
       content = await sassASync(content);

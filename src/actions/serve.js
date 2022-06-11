@@ -5,10 +5,10 @@ const nStatic = require("node-static");
 const http = require("http");
 const fsSync = require("fs");
 const { execSync } = require("child_process");
-const { buildFile } = require("../build");
+const { handleFile } = require("../engine");
 const { sleep } = require("../utils");
 let { WebSocketServer } = require("ws");
-const { loadPlugins } = require("../plugins");
+const { loadPlugins } = require("../plugin-loader");
 const fs = require("fs/promises");
 
 const HTTP_PORT = 5000;
@@ -38,12 +38,8 @@ function watchChanges(source, changedFiles) {
   });
 }
 
-async function actionServe(directory) {
-  if (!fsSync.existsSync(directory)) {
-    console.error("Source directory does not exist:", directory);
-    return;
-  }
-  const dist = path.join(directory, "dist");
+async function actionServe() {
+  const dist = path.join("./", "dist");
   await fs.mkdir(dist, { recursive: true });
   const fileServer = new nStatic.Server(dist, { cache: 0 });
 
@@ -57,8 +53,8 @@ async function actionServe(directory) {
   setupHttpServer(fileServer);
   console.log("");
 
-  let changedFiles = new Set(glob.sync(path.join(directory, "**/*")));
-  watchChanges(directory, changedFiles);
+  let changedFiles = new Set(glob.sync("**/*"));
+  watchChanges("./", changedFiles);
 
   console.log("Loading plugins");
   let plugins = loadPlugins();
@@ -76,7 +72,11 @@ async function actionServe(directory) {
           fsSync.lstatSync(file).isFile() &&
           !file.includes(dist)
         )
-          promises.push(buildFile(directory, file, dist, plugins));
+          promises.push(handleFile("serve", "./", file, dist, plugins));
+      }
+
+      for (let plugin of plugins) {
+        await plugin("serve", "postprocessing", { src: "./", dist });
       }
 
       changedFiles.clear();

@@ -1,5 +1,3 @@
-const fs = require("fs/promises");
-
 const HTML_CLOSING_TAG = "</html>";
 let HOT_RELOAD_SCRIPT = `<script>
 let socket = new WebSocket("ws://localhost:8989");
@@ -9,10 +7,10 @@ socket.onerror = (error) => console.log('reload socket error: ', error)
 socket.onmessage = () => window.location.reload(true);
 </script>`;
 
-module.exports = (action, args) => {
-  if (action == "build") {
+module.exports = (baseAction, command, args) => {
+  if (command == "build") {
     let { srcFile, content } = args;
-    if (srcFile.endsWith(".html")) {
+    if (srcFile.endsWith(".html") && baseAction == "serve") {
       content = content
         .toString()
         .replace(HTML_CLOSING_TAG, HOT_RELOAD_SCRIPT + HTML_CLOSING_TAG);

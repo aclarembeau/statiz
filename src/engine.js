@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
 const path = require("path");
 
-const buildFile = async (srcDir, srcFile, distDir, plugins) => {
+const handleFile = async (baseAction, srcDir, srcFile, distDir, plugins) => {
   console.log("Building", srcFile);
 
   let content = (await fs.readFile(srcFile)).toString();
@@ -9,7 +9,7 @@ const buildFile = async (srcDir, srcFile, distDir, plugins) => {
   srcFile = path.join(distDir, path.relative(srcDir, srcFile));
 
   for (let plugin of plugins) {
-    let result = await plugin("build", { srcFile, content });
+    let result = await plugin(baseAction, "build", { srcFile, content });
     if (result) {
       srcFile = result.srcFile;
       content = result.content;
@@ -20,4 +20,4 @@ const buildFile = async (srcDir, srcFile, distDir, plugins) => {
   console.log("Finished", srcFile);
 };
 
-module.exports = { buildFile };
+module.exports = { handleFile };

@@ -1,6 +1,6 @@
 const uglify = require("uglify-js");
-module.exports = (action, args) => {
-  if (action == "build") {
+module.exports = (baseAction, command, args) => {
+  if (command == "build") {
     let { srcFile, content } = args;
     if (srcFile.endsWith(".css")) {
       var CleanCSS = require("clean-css");

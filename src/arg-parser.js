@@ -9,11 +9,10 @@ async function parseArguments() {
   });
 
   parser.add_argument("action", { help: "build/serve" });
-  parser.add_argument("directory");
 
-  const { action, directory } = parser.parse_args();
+  const { action } = parser.parse_args();
 
-  return { action, directory };
+  return { action };
 }
 
 module.exports = { parseArguments };
