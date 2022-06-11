@@ -1,4 +1,4 @@
-import { execSync } from "child_process";
+let { execSync } = require("child_process");
 
 function actionUpgrade() {
   console.log("=== Upgrading statiz code...");
