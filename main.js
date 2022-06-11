@@ -154,7 +154,7 @@ async function main(){
         let {exec} = require('child_process')
 
         console.log('Installing dependencies...')
-        exec('git pull; npm i')
+        exec('git pull; npm i', {cwd: __dirname})
     }
     else{
         console.error('Unknown action: ', action)
