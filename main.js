@@ -149,6 +149,10 @@ async function main(){
             await sleep(200)
         }
     }
+    else if(action == 'upgrade'){
+        let {exec} = require('child_process')
+        exec('git pull')
+    }
     else{
         console.error('Unknown action: ', action)
     }
