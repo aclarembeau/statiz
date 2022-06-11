@@ -1,6 +1,6 @@
 {
   "name": "statiz",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,5 +17,8 @@
     "node-static": "^0.7.11",
     "uuid": "^8.3.2",
     "ws": "^8.8.0"
+  },
+  "devDependencies": {
+    "prettier": "2.6.2"
   }
 }
