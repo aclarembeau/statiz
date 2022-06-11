@@ -69,9 +69,9 @@ async function main(){
     });
 
     parser.add_argument('action', {help: 'build/serve' });
-    parser.add_argument('source', {help: 'source directory', required: false });
+    parser.add_argument('-s', '--src', {help: 'source directory', default: './' });
 
-    const {action, source} = parser.parse_args();
+    const {action, src: source} = parser.parse_args();
 
     if(!fsSync.existsSync(source)){
         console.error('Source directory does not exist:', source)
