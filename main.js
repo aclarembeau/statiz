@@ -10,15 +10,6 @@ const http = require('http');
 const nStatic = require('node-static');
 const {differenceInMilliseconds} = require('date-fns')
 
-const parser = new ArgumentParser({
-    description: 'Your simple static website generator'
-});
-
-parser.add_argument('action', {help: 'build/serve' });
-parser.add_argument('source', {help: 'source directory' });
-
-const {action, source} = parser.parse_args();
-
 function sassASync(srcFile) {
     return new Promise((resolve, reject) => {
         sass.render({
@@ -72,6 +63,18 @@ socket.onmessage = (event) => window.location.reload(true);
 };
 
 async function main(){
+
+    const parser = new ArgumentParser({
+        description: 'Your simple static website generator'
+    });
+
+    parser.add_argument('action', {help: 'build/serve' });
+    parser.add_argument('source', {help: 'source directory' });
+
+    process.chdir(process.cwd());
+
+    const {action, source} = parser.parse_args();
+
     if(!fsSync.existsSync(source)){
         console.error('Source directory does not exist:', source)
         return;

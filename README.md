@@ -12,9 +12,16 @@ any config or framework to learn.
 Run the following command
 
 ```
-git clone git@github.com:aclarembeau/statiz.git /usr/local/bin
-echo "#!/bin/sh\nnode statiz/main.js \"$@\"" > /bin/statiz"
-chmod +x /bin/statiz
+sudo rm -rf /usr/local/bin/statiz;
+sudo rm -rf /usr/local/bin/statiz-dir;
+sudo mkdir -p /usr/local/bin/statiz-dir; 
+sudo chmod 777 -R /usr/local/bin/statiz-dir;
+git clone git@github.com:aclarembeau/statiz.git /usr/local/bin/statiz-dir; 
+sudo touch "/usr/local/bin/statiz";
+sudo chmod 777 -R /usr/local/bin/statiz;
+echo "#\!/bin/sh\nnode /usr/local/bin/statiz-dir/main.js \"\$@\"" > "/usr/local/bin/statiz";
+cd /usr/local/bin/statiz-dir;
+npm i  
 ```
 
 ## How to use
