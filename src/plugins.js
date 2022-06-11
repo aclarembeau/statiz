@@ -6,7 +6,10 @@ function loadPlugins() {
     .sync(path.join(path.resolve(__dirname), "plugins/*.js"))
     .sort();
   return files.map((file) => {
-    return require("../" + file.replace(".js", ""));
+    return require(path.join(
+      path.resolve(__dirname),
+      "plugins/" + file.replace(".js", "")
+    ));
   });
 }
 
