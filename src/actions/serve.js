@@ -38,12 +38,12 @@ function watchChanges(source, changedFiles) {
   });
 }
 
-async function actionServe(source) {
+async function actionServe(directory) {
   if (!fsSync.existsSync(directory)) {
-    console.error("Source directory does not exist:", source);
+    console.error("Source directory does not exist:", directory);
     return;
   }
-  const dist = path.join(source, "dist");
+  const dist = path.join(directory, "dist");
   await fs.mkdir(dist, { recursive: true });
   const fileServer = new nStatic.Server(dist, { cache: 0 });
 
@@ -57,8 +57,8 @@ async function actionServe(source) {
   setupHttpServer(fileServer);
   console.log("");
 
-  let changedFiles = new Set(glob.sync(path.join(source, "**/*")));
-  watchChanges(source, changedFiles);
+  let changedFiles = new Set(glob.sync(path.join(directory, "**/*")));
+  watchChanges(directory, changedFiles);
 
   console.log("Loading plugins");
   let plugins = loadPlugins();
@@ -76,7 +76,7 @@ async function actionServe(source) {
           fsSync.lstatSync(file).isFile() &&
           !file.includes(dist)
         )
-          promises.push(buildFile(source, file, dist, plugins));
+          promises.push(buildFile(directory, file, dist, plugins));
       }
 
       changedFiles.clear();
