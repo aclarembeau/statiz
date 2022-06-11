@@ -155,7 +155,7 @@ async function main() {
     }
   } else if (action === "upgrade") {
     console.log("Upgrading statiz code...");
-    exec("git pull", { cwd: __dirname }).stdout.pipe(process.stdout);
+    exec("git pull -v", { cwd: __dirname }).stdout.pipe(process.stdout);
 
     console.log("Installing dependencies...");
     exec("npm i", { cwd: __dirname }).stdout.pipe(process.stdout);
