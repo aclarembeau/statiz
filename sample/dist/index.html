@@ -1,0 +1,17 @@
+<html>
+<head><meta http-equiv="Cache-control" content="no-cache">
+    <link rel="stylesheet" href="./main.css" />
+</head>
+<body>
+<h1>COUCOU sssees</h1>
+</body>
+<script>
+let socket = new WebSocket("ws://localhost:8989");
+socket.onopen = (e) => console.log('reload socket open')
+socket.onclose = (event) => console.log('reload socket closed')
+socket.onerror = (error) => console.log('reload socket error: ', error)
+socket.onmessage = (event) => window.location.reload(true);
+</script></html>
+
+
+
