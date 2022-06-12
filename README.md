@@ -1,7 +1,7 @@
 # Statiz - The simple static website generator
 
-Statiz is the most simple and easy to use static website generator. Without any configuration, automatically transform
-your directory into a fully functional website.
+Statiz is the most simple static website generator. Without any configuration, automatically transform your directory
+into a fully functional website.
 
 ## Supports
 
@@ -11,7 +11,7 @@ Any operating system:
 - Mac OS
 - Linux
 
-Web technologies:
+Supports:
 
 - EJS templating
 - SCSS compilation

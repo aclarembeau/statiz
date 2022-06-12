@@ -1,9 +1,16 @@
 <html>
-<head>
-    <link href="index.css" rel="stylesheet"/>
-</head>
+<%- await include('includes/_header.ejs') %>
 <body>
-It works
-<%- await include('./partials/_nav.ejs') %>
+<div class="container">
+    <h1>Finally a simple website generator</h1>
+
+    <ul>
+        <li>EJS Template generation</li>
+        <li>SCSS Processing</li>
+        <li>JS/CSS Minifying</li>
+        <li>Sitemap generation</li>
+    </ul>
+    <h2>Statiz</h2>
+</div>
 </body>
 </html>
