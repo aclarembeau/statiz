@@ -25,7 +25,7 @@ const transformFile = async (
 
   let dependencies = new Set();
 
-  let content = (await fs.readFile(srcFile)).toString();
+  let content = await fs.readFile(srcFile);
 
   try {
     for (let transform of transformations) {

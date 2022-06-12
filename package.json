@@ -1,6 +1,6 @@
 {
   "name": "statiz",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "bin": {
     "statiz": "index.js"
   },
