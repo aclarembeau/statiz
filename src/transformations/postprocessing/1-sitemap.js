@@ -2,7 +2,7 @@ const glob = require("glob");
 const path = require("path");
 let fs = require("fs/promises");
 let fsSync = require("fs");
-const prompt = require("prompt-sync");
+const prompt = require("prompt-sync")();
 
 module.exports = async (command, args) => {
   let { src, dist } = args;
