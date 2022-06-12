@@ -7,7 +7,7 @@ module.exports = async (command, args) => {
 
   if (srcFile.endsWith(".ejs")) {
     content = await ejs.render(
-      content,
+      content.toString(),
       {},
       {
         async: true,
