@@ -13,6 +13,7 @@ module.exports = async (command, args) => {
     console.log("You should define a hostname");
     host = prompt("hostname: ");
     await fs.writeFile("hostname", host);
+    console.log("Done!\n");
   } else {
     await fs.readFile(path.join(src, "hostname"));
   }
@@ -27,7 +28,7 @@ module.exports = async (command, args) => {
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>`;
   sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
   sitemap += entries.join("\n");
-  sitemap += `</urlet>`;
+  sitemap += `</urlset>`;
 
   await fs.writeFile(path.join(dist, "sitemap.xml"), sitemap);
 };
