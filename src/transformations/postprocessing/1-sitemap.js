@@ -2,19 +2,18 @@ const glob = require("glob");
 const path = require("path");
 let fs = require("fs/promises");
 let fsSync = require("fs");
+const prompt = require("prompt");
+
 module.exports = async (command, args) => {
   let { src, dist } = args;
 
-  if (!fsSync.existsSync(path.join(src, "config.json"))) {
-    console.error("Your sources should have a root config.json repository");
-    return;
-  }
-
-  let { host } = JSON.parse(await fs.readFile(path.join(src, "config.json")));
-
-  if (!host) {
-    console.error("Missing host configuration in config.json");
-    return;
+  let host;
+  if (!fsSync.existsSync(path.join(src, "hostname"))) {
+    prompt.start();
+    host = await prompt.get(["hostname"]);
+    await fs.writeFile("hostname", host);
+  } else {
+    await fs.readFile(path.join(src, "hostname"));
   }
 
   let entries = glob
