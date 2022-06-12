@@ -1,9 +1,9 @@
 const HTML_CLOSING_TAG = "</html>";
 let HOT_RELOAD_SCRIPT = `<script>
 let socket = new WebSocket("ws://localhost:8989");
-socket.onopen = () => 
-socket.onclose = () => 
-socket.onerror = (error) => 
+socket.onopen = () => console.log('Hot reload start')
+socket.onclose = () => console.log('Hot reload stop')
+socket.onerror = (error) => console.error(error)
 socket.onmessage = () => window.location.reload(true);
 </script>`;
 
