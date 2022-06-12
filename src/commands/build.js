@@ -9,15 +9,17 @@ const fs = require("fs/promises");
 module.exports = async function () {
   console.log("Builing for production\n\n");
 
+  // Initialization
   await fs.mkdir("dist", { recursive: true });
-
+  let processingTransformations = loadTransformations("processing");
   const files = glob.sync("**/*");
 
-  let transformations = loadTransformations("processing");
-
   let t0 = new Date();
-  await transformFiles("build", transformations, files, new Set());
 
+  // Processing
+  await transformFiles("build", processingTransformations, files, new Set());
+
+  // Postprocessing
   for (let transform of loadTransformations("postprocessing")) {
     await transform("build", { src: "./", dist: "dist" });
   }

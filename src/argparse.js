@@ -1,8 +1,8 @@
 const { ArgumentParser } = require("argparse");
-require("fs");
-require("path");
-require("fs/promises");
 
+/**
+ * Parse command line arguments for Statiz
+ */
 async function parseArguments() {
   const parser = new ArgumentParser({
     description: "Your simple static website generator",

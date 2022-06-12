@@ -3,17 +3,17 @@ const path = require("path");
 const fsSync = require("fs");
 const { differenceInMilliseconds } = require("date-fns");
 
-const transformFile = async (
-  command,
-  srcDir,
-  srcFile,
-  distDir,
-  transformations
-) => {
+/**
+ * Transform a single file
+ * @param command build or serve
+ * @param srcFile the file to transform
+ * @param transformations transformations to apply
+ */
+const transformFile = async (command, srcFile, transformations) => {
   if (
     !fsSync.existsSync(srcFile) ||
     fsSync.lstatSync(srcFile).isDirectory() ||
-    srcFile.includes(distDir) ||
+    srcFile.includes("dist") ||
     path.basename(srcFile).startsWith("_")
   ) {
     return;
@@ -45,7 +45,7 @@ const transformFile = async (
     console.error(e);
   }
 
-  srcFile = path.join(distDir, path.relative(srcDir, srcFile));
+  srcFile = path.join("dist", path.relative("./", srcFile));
 
   await fs.mkdir(path.dirname(srcFile), { recursive: true });
   await fs.writeFile(srcFile, content);
@@ -61,6 +61,14 @@ const transformFile = async (
   return dependencies;
 };
 
+/**
+ * Transform multiple files to the output
+ * @param command build or serve
+ * @param transformations preloaded transformations to apply
+ * @param files files to transform
+ * @param parentDependencies a hash to populate indicating inverse dependencies
+ * (ex: if index.ejs depends of _header.ejs, populate parentDependencies[_header.ejs] = index.ejs)
+ */
 let transformFiles = async (
   command,
   transformations,
@@ -71,13 +79,7 @@ let transformFiles = async (
   for (let file of files) {
     promises.push(
       (async () => {
-        let dependencies = await transformFile(
-          command,
-          "./",
-          file,
-          "dist",
-          transformations
-        );
+        let dependencies = await transformFile(command, file, transformations);
         for (let dep of dependencies || []) {
           if (!parentDependencies[dep]) parentDependencies[dep] = new Set();
           parentDependencies[dep].add(file);

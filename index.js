@@ -2,6 +2,9 @@
 
 const { parseArguments } = require("./src/argparse");
 
+/**
+ * Entry point of Statiz
+ */
 async function index() {
   const { command, directory } = await parseArguments();
 
