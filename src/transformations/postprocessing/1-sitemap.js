@@ -2,15 +2,16 @@ const glob = require("glob");
 const path = require("path");
 let fs = require("fs/promises");
 let fsSync = require("fs");
-const prompt = require("prompt");
+const prompt = require("prompt-sync");
 
 module.exports = async (command, args) => {
   let { src, dist } = args;
 
   let host;
   if (!fsSync.existsSync(path.join(src, "hostname"))) {
-    prompt.start();
-    host = await prompt.get(["hostname"]);
+    console.log("\n\n");
+    console.log("You should define a hostname");
+    host = prompt("hostname: ");
     await fs.writeFile("hostname", host);
   } else {
     await fs.readFile(path.join(src, "hostname"));
