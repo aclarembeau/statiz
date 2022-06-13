@@ -13,8 +13,7 @@ const transformFile = async (command, srcFile, transformations) => {
   if (
     !fsSync.existsSync(srcFile) ||
     fsSync.lstatSync(srcFile).isDirectory() ||
-    srcFile.includes("dist") ||
-    path.basename(srcFile).startsWith("_")
+    srcFile.includes("dist")
   ) {
     return;
   }
