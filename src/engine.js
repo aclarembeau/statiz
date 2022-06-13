@@ -13,7 +13,7 @@ const transformFile = async (command, srcFile, transformations) => {
   if (
     !fsSync.existsSync(srcFile) ||
     fsSync.lstatSync(srcFile).isDirectory() ||
-    srcFile.includes("dist")
+    srcFile.includes("dist") || srcFile.includes('node_modules') || srcFile.includes('.git') || srcFile.includes('.idea')
   ) {
     return;
   }
