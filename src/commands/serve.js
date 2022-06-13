@@ -33,15 +33,6 @@ function setupHttpServer() {
 
 function watchChanges(source, changedFiles, dist, parentDependencies) {
   chokidar.watch(source).on("all", (event, filename) => {
-    if (
-      !fsSync.existsSync(filename) ||
-      fsSync.lstatSync(filename).isDirectory() ||
-      filename.includes(dist) ||
-      path.basename(filename).startsWith("_")
-    ) {
-      return;
-    }
-
     filename = path.join(source, filename);
     changedFiles.add(filename);
 

@@ -8,7 +8,7 @@ function compileSASS(baseDir, data) {
       {
         data: data.toString(),
         importer: (url, prev, done) => {
-          dependencies.add(path.resolve(baseDir, url));
+          dependencies.add(path.join(baseDir, url));
           done({
             file: url,
           });
