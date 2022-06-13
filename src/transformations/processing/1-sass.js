@@ -6,7 +6,7 @@ function compileSASS(baseDir, data) {
   return new Promise((resolve, reject) => {
     sass.render(
       {
-        data: data,
+        data: data.toString(),
         importer: (url, prev, done) => {
           dependencies.add(path.resolve(baseDir, url));
           done({
