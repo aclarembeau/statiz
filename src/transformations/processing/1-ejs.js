@@ -1,4 +1,5 @@
 const ejs = require("ejs");
+const path = require("path");
 
 module.exports = async (command, args) => {
   let { srcFile, content } = args;
@@ -12,8 +13,10 @@ module.exports = async (command, args) => {
       {
         async: true,
         includer: (originalPath, parsedPath) => {
-          dependencies.add(originalPath);
-          return { filename: originalPath };
+          let url = path.join(path.dirname(srcFile), originalPath);
+
+          dependencies.add(url);
+          return { filename: url };
         },
       }
     );

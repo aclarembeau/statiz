@@ -8,7 +8,8 @@ function compileSASS(baseDir, data) {
       {
         data: data.toString(),
         importer: (url, prev, done) => {
-          dependencies.add(url+'.scss');
+          url = path.join(baseDir, url);
+          dependencies.add(url + ".scss");
           done({
             file: url,
           });
@@ -25,10 +26,7 @@ function compileSASS(baseDir, data) {
 module.exports = async (command, args) => {
   let { srcFile, content } = args;
   if (srcFile.endsWith(".scss")) {
-    let [css, dependencies] = await compileSASS(
-      path.resolve(path.dirname(srcFile)),
-      content
-    );
+    let [css, dependencies] = await compileSASS(path.dirname(srcFile), content);
     content = css;
     srcFile = srcFile.replace(".scss", ".css");
 
