@@ -15,7 +15,7 @@ module.exports = async (command, args) => {
     await fs.writeFile("hostname", host);
     console.log("Done!\n");
   } else {
-    await fs.readFile(path.join(src, "hostname"));
+    host = await fs.readFile(path.join(src, "hostname"));
   }
 
   let entries = glob
