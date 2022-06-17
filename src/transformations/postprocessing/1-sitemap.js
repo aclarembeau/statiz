@@ -18,6 +18,9 @@ module.exports = async (command, args) => {
     host = await fs.readFile(path.join(src, "hostname"));
   }
 
+  host = host.trim() 
+  if(!host.includes('http')) host = 'https://' + host
+
   let entries = glob
     .sync(dist + "/**/*")
     .filter((x) => x.endsWith(".html"))
