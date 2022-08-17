@@ -23,7 +23,7 @@ module.exports = async (command, args) => {
 
   let entries = glob
     .sync(dist + "/**/*")
-    .filter((x) => x.endsWith(".html"))
+    .filter((x) => x.endsWith(".html") && !x.startsWith('_') && !x.includes('/_'))
     .map((f) => {
       return `<url><loc>${host}/${path.relative(dist, f)}</loc></url>`;
     });
